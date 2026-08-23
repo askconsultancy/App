@@ -1454,7 +1454,7 @@
             }
         }
     </script>
-       document.getElementById("yourFormId").addEventListener("submit", function(e) {
+       document.getElementById("standaloneForm").addEventListener("submit", function(e) {
   e.preventDefault(); // Stops GitHub from reloading the page
 
   // Gather your form data into an object
@@ -1465,7 +1465,7 @@
   };
 
   // Replace with your exact Google Web App URL
-  const webAppUrl = "https://google.com"; 
+  const webAppUrl = "https://script.google.com/macros/s/AKfycbwvWB0N6R0RQeKk65u1hpTBacoliKopsEfdf8Xvr5waSmZW4BPYA9jHslHoAj7RskM97g/exec"; 
 
   fetch(webAppUrl, {
     method: "POST",
@@ -1478,7 +1478,7 @@
   })
   .then(() => {
     alert("Form submitted successfully!");
-    document.getElementById("yourFormId").reset();
+    document.getElementById("standaloneForm").reset();
   })
   .catch(error => {
     console.error("Submission failed:", error);
