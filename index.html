@@ -1454,5 +1454,35 @@
             }
         }
     </script>
+       document.getElementById("yourFormId").addEventListener("submit", function(e) {
+  e.preventDefault(); // Stops GitHub from reloading the page
+
+  // Gather your form data into an object
+  const formData = {
+    name: document.getElementById("nameInput").value,
+    email: document.getElementById("emailInput").value,
+    message: document.getElementById("messageInput").value
+  };
+
+  // Replace with your exact Google Web App URL
+  const webAppUrl = "https://google.com"; 
+
+  fetch(webAppUrl, {
+    method: "POST",
+    mode: "no-cors", // Crucial for external hosting like GitHub
+    cache: "no-cache",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(formData)
+  })
+  .then(() => {
+    alert("Form submitted successfully!");
+    document.getElementById("yourFormId").reset();
+  })
+  .catch(error => {
+    console.error("Submission failed:", error);
+  });
+});
 </body>
 </html>
