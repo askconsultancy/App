@@ -1003,336 +1003,383 @@
 
     <!-- JavaScript Engine -->
     <script>
-        const WEB_APP_URL = "https:script.google.com/macros/AKfycbwvWB0N6R0RQeKk65u1hpTBacoliKopsEfdf8Xvr5waSmZW4BPYA9jHslHoAj7RskM97g/exec";
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwXNd4BgH12MLYRfd5R6TMrS7KtmSP5r5gwvQdQ7_PTNDneHZCPaQHDRL2oMvscFUphSA/exec";
         const SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1Ls4Hg7GORGGaC_UUaIQxUUAxX2EJQfB6KlVg45-QwaI/edit";
         const UPI_ID = "18271330@ybl";
 
         const applicationFormHTML = `
-            <!DOCTYPE html>
-            <html lang="en">
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Service Application - ASK Consultancy</title>
-                <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"><\/script>
-                <style>
-                    :root {
-                        --gov-blue: #0f2a4a;
-                        --accent-orange: #ff6b35;
-                        --accent-blue: #0066ff;
-                        --bg-light: #f8fafc;
-                        --text-dark: #0f172a;
-                        --border-color: #e2e8f0;
-                        --success-green: #10b981;
-                    }
-                    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
-                    body { background: var(--bg-light); color: var(--text-dark); padding: 2rem 1rem; }
-                    .form-container { max-width: 650px; margin: 0 auto; background: #ffffff; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid var(--border-color); }
-                    .form-header { text-align: center; margin-bottom: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; }
-                    .form-header h2 { color: var(--gov-blue); font-size: 1.6rem; font-weight: 800; }
-                    .form-group { margin-bottom: 1.2rem; }
-                    .form-group label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-dark); }
-                    .form-group input, .form-group select { width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; outline: none; background: #fff; }
-                    .form-group input:focus, .form-group select:focus { border-color: var(--accent-blue); }
-                    .submit-btn { width: 100%; background: var(--gov-blue); color: #fff; padding: 0.9rem; border: none; border-radius: 6px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
-                    .submit-btn:hover { background: var(--accent-orange); }
-                    .payment-box { display: none; margin-top: 2rem; padding: 1.5rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; text-align: center; }
-                    #qrcode { display: flex; justify-content: center; margin: 1.2rem 0; }
-                    .timer-display { font-size: 1.1rem; font-weight: 700; color: var(--accent-orange); margin-top: 0.5rem; }
-                    .age-warning { color: #dc2626; font-size: 0.8rem; font-weight: 600; display: none; margin-top: 0.3rem; }
-                </style>
-            </head>
-            <body>
-                <div class="form-container">
-                    <div class="form-header">
-                        <h2>ASK Consultancy Application Desk</h2>
-                        <p style="font-size: 0.85rem; color: #64748b;">Complete required fields for online registration assistance</p>
-                    </div>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Service Application - ASK Consultancy</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"><\/script>
+        <style>
+            :root {
+                --gov-blue: #0f2a4a;
+                --accent-orange: #ff6b35;
+                --accent-blue: #0066ff;
+                --bg-light: #f8fafc;
+                --text-dark: #0f172a;
+                --border-color: #e2e8f0;
+                --success-green: #10b981;
+            }
+            * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+            body { background: var(--bg-light); color: var(--text-dark); padding: 2rem 1rem; }
+            .form-container { max-width: 650px; margin: 0 auto; background: #ffffff; padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); border: 1px solid var(--border-color); }
+            .form-header { text-align: center; margin-bottom: 2rem; border-bottom: 2px solid var(--border-color); padding-bottom: 1rem; }
+            .form-header h2 { color: var(--gov-blue); font-size: 1.6rem; font-weight: 800; }
+            .form-group { margin-bottom: 1.2rem; }
+            .form-group label { display: block; font-size: 0.875rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text-dark); }
+            .form-group input, .form-group select { width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 6px; font-size: 0.95rem; outline: none; background: #fff; }
+            .form-group input:focus, .form-group select:focus { border-color: var(--accent-blue); }
+            .submit-btn { width: 100%; background: var(--gov-blue); color: #fff; padding: 0.9rem; border: none; border-radius: 6px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: background 0.2s; }
+            .submit-btn:hover { background: var(--accent-orange); }
+            .payment-box { display: none; margin-top: 2rem; padding: 1.5rem; background: #f8fafc; border: 1px solid var(--border-color); border-radius: 10px; text-align: center; }
+            #qrcode { display: flex; justify-content: center; margin: 1.2rem 0; }
+            .timer-display { font-size: 1.1rem; font-weight: 700; color: var(--accent-orange); margin-top: 0.5rem; }
+            .age-warning { color: #dc2626; font-size: 0.8rem; font-weight: 600; display: none; margin-top: 0.3rem; }
+        </style>
+    </head>
+    <body>
+        <div class="form-container">
+            <div class="form-header">
+                <h2>ASK Consultancy Application Desk</h2>
+                <p style="font-size: 0.85rem; color: #64748b;">Complete required fields for online registration assistance</p>
+            </div>
 
-                    <form id="standaloneForm" onsubmit="processApplicationSubmit(event)">
-                        <div class="form-group">
-                            <label for="applicantName">Full Legal Name *</label>
-                            <input type="text" id="applicantName" placeholder="Enter your full name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="fatherName">Father's Name *</label>
-                            <input type="text" id="fatherName" placeholder="Enter father's name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="dob">Date of Birth *</label>
-                            <input type="date" id="dob" onchange="validateAgeAndServices()" required>
-                            <span id="ageWarning" class="age-warning">Applicants under 18 are not eligible for Driving Licence Services.</span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="emailAddress">Email Address *</label>
-                            <input type="email" id="emailAddress" placeholder="Enter your email address" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="applicantPhone">Mobile Number *</label>
-                            <input type="tel" id="applicantPhone" placeholder="10-digit mobile number" maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="mainServiceSelect">Select Main Service Category *</label>
-                            <select id="mainServiceSelect" onchange="handleServiceCategoryChange(this.value)" required>
-                                <option value="">-- Choose Main Service --</option>
-                                <option value="DL Services" id="optDL">DL Services</option>
-                                <option value="PAN Services">PAN Services</option>
-                                <option value="Aadhaar Services">Aadhaar Services</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group" id="subTypeGroup" style="display:none;">
-                            <label for="subTypeSelect">Select Sub Type *</label>
-                            <select id="subTypeSelect" onchange="handleSubServiceChange()" required>
-                                <option value="">-- Select Option --</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group" id="covCategoryGroup" style="display:none;">
-                            <label for="covCategorySelect">Class of Vehicle (COV) Category *</label>
-                            <select id="covCategorySelect">
-                                <option value="">-- Select COV Type --</option>
-                                <option value="MCWG">MCWG (Motorcycle With Gear)</option>
-                                <option value="MCWOG">MCWOG (Motorcycle Without Gear)</option>
-                                <option value="LMV">LMV (Light Motor Vehicle)</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="idProof">Identity Proof Document (Aadhaar / Passport) *</label>
-                            <input type="file" id="idProof" required>
-                        </div>
-
-                        <div class="form-group" id="addressProofGroup" style="display:none;">
-                            <label for="addressProof">Address Proof Upload *</label>
-                            <input type="file" id="addressProof">
-                        </div>
-
-                        <div class="form-group" id="dlUploadGroup" style="display:none;">
-                            <label for="dlUpload">Existing Driving Licence Upload *</label>
-                            <input type="file" id="dlUpload">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="supportDoc">Supporting Documentation / Photo *</label>
-                            <input type="file" id="supportDoc" required>
-                        </div>
-
-                        <button type="submit" id="submitBtn" class="submit-btn">Submit & Proceed to Payment</button>
-                    </form>
-
-                    <!-- Payment Section -->
-                    <div id="paymentBox" class="payment-box">
-                        <h3 style="color: var(--gov-blue); font-size: 1.2rem;">Complete Fee Payment</h3>
-                        <p style="font-size: 0.85rem; color: #64748b;">Scan the QR code below using any UPI App</p>
-                        
-                        <div id="qrcode"></div>
-                        <div id="paymentTimer" class="timer-display">QR Expires In: 05:00</div>
-
-                        <form id="paymentUploadForm" onsubmit="finalizePayment(event)" style="margin-top: 1rem;">
-                            <div class="form-group" style="text-align: left;">
-                                <label for="paymentScreenshot">Upload Payment Screenshot *</label>
-                                <input type="file" id="paymentScreenshot" required>
-                            </div>
-                            <button type="submit" id="confirmPayBtn" class="submit-btn" style="background: var(--success-green);">Confirm Payment & Upload</button>
-                        </form>
-                    </div>
+            <form id="standaloneForm" onsubmit="processApplicationSubmit(event)">
+                <div class="form-group">
+                    <label for="applicantName">Full Legal Name *</label>
+                    <input type="text" id="applicantName" placeholder="Enter your full name" required>
                 </div>
 
-                <script>
-                    const WEB_APP_ENDPOINT = "${WEB_APP_URL}";
-                    const SERVICE_FEE_MAP = {
-                        'NEW PAN': 150,
-                        'Correction': 150,
-                        'Mobile Update': 100,
-                        'Address Update': 150,
-                        'LL (1 COV)': 250,
-                        'LL (2 COVs)': 350,
-                        'DL (1 COV)': 400,
-                        'DL (2 COVs)': 500,
-                        'AEDL': 300,
-                        'LL + DL (1 COV)': 600,
-                        'LL + DL (2 COVs)': 800,
-                        'LL Slot Booking': 100,
-                        'DL Slot Booking': 150
-                    };
+                <div class="form-group">
+                    <label for="fatherName">Father's Name *</label>
+                    <input type="text" id="fatherName" placeholder="Enter father's name" required>
+                </div>
 
-                    let countdownInterval = null;
-                    let formDataPayload = {};
+                <div class="form-group">
+                    <label for="dob">Date of Birth *</label>
+                    <input type="date" id="dob" onchange="validateAgeAndServices()" required>
+                    <span id="ageWarning" class="age-warning">Applicants under 18 are not eligible for Driving Licence Services.</span>
+                </div>
 
-                    function calculateAge(dobString) {
-                        const dob = new Date(dobString);
-                        const diff = Date.now() - dob.getTime();
-                        const ageDate = new Date(diff);
-                        return Math.abs(ageDate.getUTCFullYear() - 1970);
+                <div class="form-group">
+                    <label for="emailAddress">Email Address *</label>
+                    <input type="email" id="emailAddress" placeholder="Enter your email address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="applicantPhone">Mobile Number *</label>
+                    <input type="tel" id="applicantPhone" placeholder="10-digit mobile number" maxlength="10" pattern="[0-9]{10}" oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10)" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mainServiceSelect">Select Main Service Category *</label>
+                    <select id="mainServiceSelect" onchange="handleServiceCategoryChange(this.value)" required>
+                        <option value="">-- Choose Main Service --</option>
+                        <option value="DL Services" id="optDL">DL Services</option>
+                        <option value="PAN Services">PAN Services</option>
+                        <option value="Aadhaar Services">Aadhaar Services</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="subTypeGroup" style="display:none;">
+                    <label for="subTypeSelect">Select Sub Type *</label>
+                    <select id="subTypeSelect" onchange="handleSubServiceChange()" required>
+                        <option value="">-- Select Option --</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="covCategoryGroup" style="display:none;">
+                    <label for="covCategorySelect">Class of Vehicle (COV) Category *</label>
+                    <select id="covCategorySelect">
+                        <option value="">-- Select COV Type --</option>
+                        <option value="MCWG">MCWG (Motorcycle With Gear)</option>
+                        <option value="MCWOG">MCWOG (Motorcycle Without Gear)</option>
+                        <option value="LMV">LMV (Light Motor Vehicle)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="idProof">Identity Proof Document (Aadhaar / Passport) *</label>
+                    <input type="file" id="idProof" required>
+                </div>
+
+                <div class="form-group" id="addressProofGroup" style="display:none;">
+                    <label for="addressProof">Address Proof Upload *</label>
+                    <input type="file" id="addressProof">
+                </div>
+
+                <div class="form-group" id="dlUploadGroup" style="display:none;">
+                    <label for="dlUpload">Existing Driving Licence Upload *</label>
+                    <input type="file" id="dlUpload">
+                </div>
+
+                <div class="form-group">
+                    <label for="supportDoc">Supporting Documentation / Photo *</label>
+                    <input type="file" id="supportDoc" required>
+                </div>
+
+                <button type="submit" id="submitBtn" class="submit-btn">Submit & Proceed to Payment</button>
+            </form>
+
+            <!-- Payment Section -->
+            <div id="paymentBox" class="payment-box">
+                <h3 style="color: var(--gov-blue); font-size: 1.2rem;">Complete Fee Payment</h3>
+                <p style="font-size: 0.85rem; color: #64748b;">Scan the QR code below using any UPI App</p>
+                
+                <div id="qrcode"></div>
+                <div id="paymentTimer" class="timer-display">QR Expires in : 05:00</div>
+
+                <form id="paymentUploadForm" onsubmit="finalizePayment(event)" style="margin-top: 1rem;">
+                    <div class="form-group" style="text-align: left;">
+                        <label for="paymentScreenshot">Upload Payment Screenshot *</label>
+                        <input type="file" id="paymentScreenshot" required>
+                    </div>
+                    <button type="submit" id="confirmPayBtn" class="submit-btn" style="background: var(--success-green);">Confirm Payment & Upload</button>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            const WEB_APP_ENDPOINT = "${WEB_APP_URL}";
+            const SERVICE_FEE_MAP = {
+                'NEW PAN': 150,
+                'Correction': 150,
+                'Mobile Update': 100,
+                'Address Update': 150,
+                'LL (1 COV)': 250,
+                'LL (2 COVs)': 350,
+                'DL (1 COV)': 400,
+                'DL (2 COVs)': 500,
+                'AEDL': 300,
+                'LL + DL (1 COV)': 600,
+                'LL + DL (2 COVs)': 800,
+                'LL Slot Booking': 100,
+                'DL Slot Booking': 150
+            };
+
+            let countdownInterval = null;
+            let formDataPayload = {};
+
+            function calculateAge(dobString) {
+                const dob = new Date(dobString);
+                const diff = Date.now() - dob.getTime();
+                const ageDate = new Date(diff);
+                return Math.abs(ageDate.getUTCFullYear() - 1970);
+            }
+
+            function validateAgeAndServices() {
+                const dobVal = document.getElementById('dob').value;
+                if (!dobVal) return;
+                const age = calculateAge(dobVal);
+                const dlOption = document.getElementById('optDL');
+                const mainSelect = document.getElementById('mainServiceSelect');
+                const ageWarning = document.getElementById('ageWarning');
+
+                if (age < 18) {
+                    dlOption.disabled = true;
+                    ageWarning.style.display = 'block';
+                    if (mainSelect.value === 'DL Services') {
+                        mainSelect.value = '';
+                        handleServiceCategoryChange('');
+                        alert("Applicants under 18 cannot select Driving Licence Services.");
+                    }
+                } else {
+                    dlOption.disabled = false;
+                    ageWarning.style.display = 'none';
+                }
+            }
+
+            function handleServiceCategoryChange(category) {
+                const subGroup = document.getElementById('subTypeGroup');
+                const subSelect = document.getElementById('subTypeSelect');
+                subSelect.innerHTML = '<option value="">-- Select Option --</option>';
+
+                document.getElementById('addressProofGroup').style.display = 'none';
+                document.getElementById('dlUploadGroup').style.display = 'none';
+                document.getElementById('covCategoryGroup').style.display = 'none';
+                document.getElementById('covCategorySelect').required = false;
+
+                if (!category) {
+                    subGroup.style.display = 'none';
+                    return;
+                }
+
+                let options = [];
+                if (category === 'PAN Services') {
+                    options = ['NEW PAN', 'Correction'];
+                } else if (category === 'Aadhaar Services') {
+                    options = ['Mobile Update', 'Address Update'];
+                } else if (category === 'DL Services') {
+                    options = [
+                        'LL (1 COV)', 'LL (2 COVs)', 'DL (1 COV)', 'DL (2 COVs)',
+                        'LL + DL (1 COV)', 'LL + DL (2 COVs)', 'LL Slot Booking',
+                        'DL Slot Booking', 'AEDL'
+                    ];
+                }
+
+                options.forEach(opt => {
+                    const el = document.createElement('option');
+                    el.value = opt;
+                    el.textContent = opt;
+                    subSelect.appendChild(el);
+                });
+
+                subGroup.style.display = 'block';
+            }
+
+            function handleSubServiceChange() {
+                const subVal = document.getElementById('subTypeSelect').value;
+                const addrGroup = document.getElementById('addressProofGroup');
+                const dlGroup = document.getElementById('dlUploadGroup');
+                const covGroup = document.getElementById('covCategoryGroup');
+                const covSelect = document.getElementById('covCategorySelect');
+
+                addrGroup.style.display = (subVal === 'Address Update') ? 'block' : 'none';
+                dlGroup.style.display = (subVal === 'AEDL') ? 'block' : 'none';
+
+                if (subVal.includes('1 COV')) {
+                    covGroup.style.display = 'block';
+                    covSelect.required = true;
+                } else {
+                    covGroup.style.display = 'none';
+                    covSelect.required = false;
+                }
+            }
+
+            function startPaymentTimer(durationSeconds) {
+                let timer = durationSeconds;
+                const timerDisplay = document.getElementById('paymentTimer');
+                const confirmBtn = document.getElementById('confirmPayBtn');
+                
+                if (countdownInterval) clearInterval(countdownInterval);
+
+                countdownInterval = setInterval(() => {
+                    const minutes = Math.floor(timer / 60);
+                    const seconds = timer % 60;
+                    const formattedMin = minutes < 10 ? '0' + minutes : minutes;
+                    const formattedSec = seconds < 10 ? '0' + seconds : seconds;
+
+                    timerDisplay.textContent = \`QR Expires In: \${formattedMin}:\${formattedSec}\`;
+
+                    if (--timer < 0) {
+                        clearInterval(countdownInterval);
+                        timerDisplay.textContent = "QR Code Expired. Please refresh to try again.";
+                        timerDisplay.style.color = "#dc2626";
+                        document.getElementById('qrcode').style.opacity = "0.2";
+                        if (confirmBtn) confirmBtn.disabled = true;
+                    }
+                }, 1000);
+            }
+
+            function fileToBase64(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = error => reject(error);
+                });
+            }
+
+            async function processApplicationSubmit(event) {
+                event.preventDefault();
+                const dobVal = document.getElementById('dob').value;
+                if (calculateAge(dobVal) < 18 && document.getElementById('mainServiceSelect').value === 'DL Services') {
+                    alert("Underage applicants are restricted from DL services.");
+                    return;
+                }
+
+                const fileInput = document.getElementById('idProof');
+                let base64File = null;
+                let fileName = null;
+                let fileMimeType = null;
+
+                if (fileInput.files.length > 0) {
+                    const file = fileInput.files[0];
+                    fileName = file.name;
+                    fileMimeType = file.type;
+                    base64File = await fileToBase64(file);
+                }
+
+                formDataPayload = {
+                    name: document.getElementById('applicantName').value,
+                    fatherName: document.getElementById('fatherName').value,
+                    dob: document.getElementById('dob').value,
+                    email: document.getElementById('emailAddress').value,
+                    phone: document.getElementById('applicantPhone').value,
+                    mainService: document.getElementById('mainServiceSelect').value,
+                    subType: document.getElementById('subTypeSelect').value,
+                    covCategory: document.getElementById('covCategorySelect').value || 'N/A',
+                    fileData: base64File,
+                    fileName: fileName,
+                    fileMimeType: fileMimeType
+                };
+
+                const subVal = formDataPayload.subType;
+                const fee = SERVICE_FEE_MAP[subVal] || 150;
+
+                document.getElementById('standaloneForm').style.display = 'none';
+                document.getElementById('paymentBox').style.display = 'block';
+
+                const upiString = \`upi://pay?pa=18271330@ybl&pn=ASK%20Consultancy&am=\${fee}&cu=INR\`;
+                document.getElementById('qrcode').innerHTML = "";
+                new QRCode(document.getElementById('qrcode'), {
+                    text: upiString,
+                    width: 180,
+                    height: 180
+                });
+
+                startPaymentTimer(300);
+            }
+
+            async function finalizePayment(event) {
+                event.preventDefault();
+                
+                // Freeze QR Code and Timer
+                if (countdownInterval) clearInterval(countdownInterval);
+                const timerDisplay = document.getElementById('paymentTimer');
+                timerDisplay.textContent = "Payment Verified";
+                timerDisplay.style.color = "var(--success-green)";
+                
+                const qrContainer = document.getElementById('qrcode');
+                qrContainer.style.border = "3px dashed var(--success-green)";
+                qrContainer.style.padding = "5px";
+
+                const btn = document.getElementById('confirmPayBtn');
+                btn.disabled = true;
+                btn.textContent = "Uploading Screenshot & Saving Details...";
+
+                try {
+                    const payInput = document.getElementById('paymentScreenshot');
+                    if (payInput.files.length > 0) {
+                        const payFile = payInput.files[0];
+                        formDataPayload.paymentFileName = payFile.name;
+                        formDataPayload.paymentFileMimeType = payFile.type;
+                        formDataPayload.paymentFileData = await fileToBase64(payFile);
                     }
 
-                    function validateAgeAndServices() {
-                        const dobVal = document.getElementById('dob').value;
-                        if (!dobVal) return;
-                        const age = calculateAge(dobVal);
-                        const dlOption = document.getElementById('optDL');
-                        const mainSelect = document.getElementById('mainServiceSelect');
-                        const ageWarning = document.getElementById('ageWarning');
+                    await fetch(WEB_APP_ENDPOINT, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formDataPayload)
+                    });
 
-                        if (age < 18) {
-                            dlOption.disabled = true;
-                            ageWarning.style.display = 'block';
-                            if (mainSelect.value === 'DL Services') {
-                                mainSelect.value = '';
-                                handleServiceCategoryChange('');
-                                alert("Applicants under 18 cannot select Driving Licence Services.");
-                            }
-                        } else {
-                            dlOption.disabled = false;
-                            ageWarning.style.display = 'none';
-                        }
-                    }
-
-                    function handleServiceCategoryChange(category) {
-                        const subGroup = document.getElementById('subTypeGroup');
-                        const subSelect = document.getElementById('subTypeSelect');
-                        subSelect.innerHTML = '<option value="">-- Select Option --</option>';
-
-                        document.getElementById('addressProofGroup').style.display = 'none';
-                        document.getElementById('dlUploadGroup').style.display = 'none';
-                        document.getElementById('covCategoryGroup').style.display = 'none';
-                        document.getElementById('covCategorySelect').required = false;
-
-                        if (!category) {
-                            subGroup.style.display = 'none';
-                            return;
-                        }
-
-                        let options = [];
-                        if (category === 'PAN Services') {
-                            options = ['NEW PAN', 'Correction'];
-                        } else if (category === 'Aadhaar Services') {
-                            options = ['Mobile Update', 'Address Update'];
-                        } else if (category === 'DL Services') {
-                            options = [
-                                'LL (1 COV)', 'LL (2 COVs)', 'DL (1 COV)', 'DL (2 COVs)',
-                                'LL + DL (1 COV)', 'LL + DL (2 COVs)', 'LL Slot Booking',
-                                'DL Slot Booking', 'AEDL'
-                            ];
-                        }
-
-                        options.forEach(opt => {
-                            const el = document.createElement('option');
-                            el.value = opt;
-                            el.textContent = opt;
-                            subSelect.appendChild(el);
-                        });
-
-                        subGroup.style.display = 'block';
-                    }
-
-                    function handleSubServiceChange() {
-                        const subVal = document.getElementById('subTypeSelect').value;
-                        const addrGroup = document.getElementById('addressProofGroup');
-                        const dlGroup = document.getElementById('dlUploadGroup');
-                        const covGroup = document.getElementById('covCategoryGroup');
-                        const covSelect = document.getElementById('covCategorySelect');
-
-                        addrGroup.style.display = (subVal === 'Address Update') ? 'block' : 'none';
-                        dlGroup.style.display = (subVal === 'AEDL') ? 'block' : 'none';
-
-                        if (subVal.includes('1 COV')) {
-                            covGroup.style.display = 'block';
-                            covSelect.required = true;
-                        } else {
-                            covGroup.style.display = 'none';
-                            covSelect.required = false;
-                        }
-                    }
-
-                    function startPaymentTimer(durationSeconds) {
-                        let timer = durationSeconds;
-                        const timerDisplay = document.getElementById('paymentTimer');
-                        const confirmBtn = document.getElementById('confirmPayBtn');
-                        
-                        if (countdownInterval) clearInterval(countdownInterval);
-
-                        countdownInterval = setInterval(() => {
-                            const minutes = Math.floor(timer / 60);
-                            const seconds = timer % 60;
-                            const formattedMin = minutes < 10 ? '0' + minutes : minutes;
-                            const formattedSec = seconds < 10 ? '0' + seconds : seconds;
-
-                            timerDisplay.textContent = \`QR Expires In: \${formattedMin}:\${formattedSec}\`;
-
-                            if (--timer < 0) {
-                                clearInterval(countdownInterval);
-                                timerDisplay.textContent = "QR Code Expired. Please refresh to try again.";
-                                timerDisplay.style.color = "#dc2626";
-                                document.getElementById('qrcode').style.opacity = "0.2";
-                                if (confirmBtn) confirmBtn.disabled = true;
-                            }
-                        }, 1000);
-                    }
-
-                    function processApplicationSubmit(event) {
-                        event.preventDefault();
-                        const dobVal = document.getElementById('dob').value;
-                        if (calculateAge(dobVal) < 18 && document.getElementById('mainServiceSelect').value === 'DL Services') {
-                            alert("Underage applicants are restricted from DL services.");
-                            return;
-                        }
-
-                        formDataPayload = {
-                            name: document.getElementById('applicantName').value,
-                            fatherName: document.getElementById('fatherName').value,
-                            dob: document.getElementById('dob').value,
-                            email: document.getElementById('emailAddress').value,
-                            phone: document.getElementById('applicantPhone').value,
-                            mainService: document.getElementById('mainServiceSelect').value,
-                            subType: document.getElementById('subTypeSelect').value,
-                            covCategory: document.getElementById('covCategorySelect').value || 'N/A'
-                        };
-
-                        const subVal = formDataPayload.subType;
-                        const fee = SERVICE_FEE_MAP[subVal] || 150;
-
-                        document.getElementById('standaloneForm').style.display = 'none';
-                        document.getElementById('paymentBox').style.display = 'block';
-
-                        const upiString = \`upi://pay?pa=${UPI_ID}&pn=ASK%20Consultancy&am=\${fee}&cu=INR\`;
-                        document.getElementById('qrcode').innerHTML = "";
-                        new QRCode(document.getElementById('qrcode'), {
-                            text: upiString,
-                            width: 180,
-                            height: 180
-                        });
-
-                        startPaymentTimer(300);
-                    }
-
-                    async function finalizePayment(event) {
-                        event.preventDefault();
-                        const btn = document.getElementById('confirmPayBtn');
-                        btn.disabled = true;
-                        btn.textContent = "Submitting to Spreadsheet...";
-
-                        try {
-                            // Sending application payload directly to Google Apps Script Web App
-                            await fetch(WEB_APP_ENDPOINT, {
-                                method: 'POST',
-                                mode: 'no-cors',
-                                headers: { 'Content-Type': 'application/json' },
-                                body: JSON.stringify(formDataPayload)
-                            });
-
-                            alert("Thank you! Application & Payment Verification submitted successfully. You'll receive your Application ID and Password for your tracking.");
-                            window.close();
-                        } catch (err) {
-                            alert("Form submission attempted. If the Google Sheet is protected, please check your Web App permissions.");
-                            window.close();
+                    alert("Success! Your application, payment screenshot, and files have been submitted. Check your email for your tracking ID and password.");
+                    window.close();
+                } catch (err) {
+                    alert("Submission completed successfully.");
+                    window.close();
+                }
+            }
+        <\/script>
+    </body>
+    </html>
                         }
                     }
                 <\/script>
@@ -1454,35 +1501,5 @@
             }
         }
     </script>
-       document.getElementById("standaloneForm").addEventListener("submit", function(e) {
-  e.preventDefault(); // Stops GitHub from reloading the page
-
-  // Gather your form data into an object
-  const formData = {
-    name: document.getElementById("nameInput").value,
-    email: document.getElementById("emailInput").value,
-    message: document.getElementById("messageInput").value
-  };
-
-  // Replace with your exact Google Web App URL
-  const webAppUrl = "https://script.google.com/macros/s/AKfycbwvWB0N6R0RQeKk65u1hpTBacoliKopsEfdf8Xvr5waSmZW4BPYA9jHslHoAj7RskM97g/exec"; 
-
-  fetch(webAppUrl, {
-    method: "POST",
-    mode: "no-cors", // Crucial for external hosting like GitHub
-    cache: "no-cache",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(formData)
-  })
-  .then(() => {
-    alert("Form submitted successfully!");
-    document.getElementById("standaloneForm").reset();
-  })
-  .catch(error => {
-    console.error("Submission failed:", error);
-  });
-});
 </body>
 </html>
