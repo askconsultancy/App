@@ -1110,16 +1110,6 @@
                     <input type="file" id="idProof" required>
                 </div>
 
-                <div class="form-group" id="addressProofGroup" style="display:none;">
-                    <label for="addressProof">Address Proof Upload *</label>
-                    <input type="file" id="addressProof">
-                </div>
-
-                <div class="form-group" id="dlUploadGroup" style="display:none;">
-                    <label for="dlUpload">Existing Driving Licence Upload *</label>
-                    <input type="file" id="dlUpload">
-                </div>
-
                 <div class="form-group">
                     <label for="supportDoc">Supporting Documentation / Photo *</label>
                     <input type="file" id="supportDoc" required>
@@ -1201,8 +1191,6 @@
                 const subSelect = document.getElementById('subTypeSelect');
                 subSelect.innerHTML = '<option value="">-- Select Option --</option>';
 
-                document.getElementById('addressProofGroup').style.display = 'none';
-                document.getElementById('dlUploadGroup').style.display = 'none';
                 document.getElementById('covCategoryGroup').style.display = 'none';
                 document.getElementById('covCategorySelect').required = false;
 
@@ -1236,13 +1224,8 @@
 
             function handleSubServiceChange() {
                 const subVal = document.getElementById('subTypeSelect').value;
-                const addrGroup = document.getElementById('addressProofGroup');
-                const dlGroup = document.getElementById('dlUploadGroup');
                 const covGroup = document.getElementById('covCategoryGroup');
                 const covSelect = document.getElementById('covCategorySelect');
-
-                addrGroup.style.display = (subVal === 'Address Update') ? 'block' : 'none';
-                dlGroup.style.display = (subVal === 'AEDL') ? 'block' : 'none';
 
                 if (subVal.includes('1 COV')) {
                     covGroup.style.display = 'block';
@@ -1295,47 +1278,66 @@
                     return;
                 }
 
-                const fileInput = document.getElementById('idProof');
-                let base64File = null;
-                let fileName = null;
-                let fileMimeType = null;
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Processing files & generating QR...";
 
-                if (fileInput.files.length > 0) {
-                    const file = fileInput.files[0];
-                    fileName = file.name;
-                    fileMimeType = file.type;
-                    base64File = await fileToBase64(file);
+                try {
+                    // Read Identity Proof file
+                    const idFileObj = document.getElementById('idProof').files[0];
+                    let idBase64 = null, idName = null, idType = null;
+                    if (idFileObj) {
+                        idBase64 = await fileToBase64(idFileObj);
+                        idName = idFileObj.name;
+                        idType = idFileObj.type;
+                    }
+
+                    // Read Supporting Document file
+                    const supportFileObj = document.getElementById('supportDoc').files[0];
+                    let supportBase64 = null, supportName = null, supportType = null;
+                    if (supportFileObj) {
+                        supportBase64 = await fileToBase64(supportFileObj);
+                        supportName = supportFileObj.name;
+                        supportType = supportFileObj.type;
+                    }
+
+                    formDataPayload = {
+                        name: document.getElementById('applicantName').value,
+                        fatherName: document.getElementById('fatherName').value,
+                        dob: document.getElementById('dob').value,
+                        email: document.getElementById('emailAddress').value,
+                        phone: document.getElementById('applicantPhone').value,
+                        mainService: document.getElementById('mainServiceSelect').value,
+                        subType: document.getElementById('subTypeSelect').value,
+                        covCategory: document.getElementById('covCategorySelect').value || 'N/A',
+                        fileData: idBase64,
+                        fileName: idName,
+                        fileMimeType: idType,
+                        supportFileData: supportBase64,
+                        supportFileName: supportName,
+                        supportFileMimeType: supportType
+                    };
+
+                    const subVal = formDataPayload.subType;
+                    const fee = SERVICE_FEE_MAP[subVal] || 150;
+
+                    document.getElementById('standaloneForm').style.display = 'none';
+                    document.getElementById('paymentBox').style.display = 'block';
+
+                    const upiString = \`upi://pay?pa=18271330@ybl&pn=ASK%20Consultancy&am=\${fee}&cu=INR\`;
+                    document.getElementById('qrcode').innerHTML = "";
+                    new QRCode(document.getElementById('qrcode'), {
+                        text: upiString,
+                        width: 180,
+                        height: 180
+                    });
+
+                    startPaymentTimer(300);
+                } catch (err) {
+                    alert("Error reading uploaded files. Please try again.");
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Submit & Proceed to Payment";
                 }
-
-                formDataPayload = {
-                    name: document.getElementById('applicantName').value,
-                    fatherName: document.getElementById('fatherName').value,
-                    dob: document.getElementById('dob').value,
-                    email: document.getElementById('emailAddress').value,
-                    phone: document.getElementById('applicantPhone').value,
-                    mainService: document.getElementById('mainServiceSelect').value,
-                    subType: document.getElementById('subTypeSelect').value,
-                    covCategory: document.getElementById('covCategorySelect').value || 'N/A',
-                    fileData: base64File,
-                    fileName: fileName,
-                    fileMimeType: fileMimeType
-                };
-
-                const subVal = formDataPayload.subType;
-                const fee = SERVICE_FEE_MAP[subVal] || 150;
-
-                document.getElementById('standaloneForm').style.display = 'none';
-                document.getElementById('paymentBox').style.display = 'block';
-
-                const upiString = \`upi://pay?pa=18271330@ybl&pn=ASK%20Consultancy&am=\${fee}&cu=INR\`;
-                document.getElementById('qrcode').innerHTML = "";
-                new QRCode(document.getElementById('qrcode'), {
-                    text: upiString,
-                    width: 180,
-                    height: 180
-                });
-
-                startPaymentTimer(300);
             }
 
             async function finalizePayment(event) {
@@ -1381,11 +1383,6 @@
         <\/script>
     </body>
     </html>
-                        }
-                    }
-                <\/script>
-            </body>
-            </html>
         `;
 
         function initNewTabForm(newWin, mainService, subService) {
