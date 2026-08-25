@@ -1103,6 +1103,11 @@
                         <option value="MCWOG">MCWOG (Motorcycle Without Gear)</option>
                         <option value="LMV">LMV (Light Motor Vehicle)</option>
                     </select>
+                </div
+                
+                <div class="form-group" id="existingDlGroup" style="display:none;">
+                    <label for="existingDlProof">Existing Driving Licence (DL) Document *</label>
+                    <input type="file" id="existingDlProof">
                 </div>
 
                 <div class="form-group">
@@ -1226,6 +1231,8 @@
                 const subVal = document.getElementById('subTypeSelect').value;
                 const covGroup = document.getElementById('covCategoryGroup');
                 const covSelect = document.getElementById('covCategorySelect');
+                const dlGroup = document.getElementById('existingDlGroup');
+                const dlInput = document.getElementById('existingDlProof');
 
                 if (subVal.includes('1 COV')) {
                     covGroup.style.display = 'block';
@@ -1233,6 +1240,12 @@
                 } else {
                     covGroup.style.display = 'none';
                     covSelect.required = false;
+                if (subVal === 'AEDL') {
+                    dlGroup.style.display = 'block';
+                    dlInput.required = true;
+                } else {
+                    dlGroup.style.display = 'none';
+                    dlInput.required = false;
                 }
             }
 
@@ -1291,6 +1304,14 @@
                         idName = idFileObj.name;
                         idType = idFileObj.type;
                     }
+                    // Read Existing DL file if AEDL selected
+                    const dlFileObj = document.getElementById('existingDlProof').files[0];
+                    let dlBase64 = null, dlName = null, dlType = null;
+                    if (dlFileObj) {
+                        dlBase64 = await fileToBase64(dlFileObj);
+                        dlName = dlFileObj.name;
+                        dlType = dlFileObj.type;
+                    }
 
                     // Read Supporting Document file
                     const supportFileObj = document.getElementById('supportDoc').files[0];
@@ -1310,6 +1331,9 @@
                         mainService: document.getElementById('mainServiceSelect').value,
                         subType: document.getElementById('subTypeSelect').value,
                         covCategory: document.getElementById('covCategorySelect').value || 'N/A',
+                        existingDlData: dlBase64,
+                        existingDlName: dlName,
+                        existingDlMimeType: dlType,
                         fileData: idBase64,
                         fileName: idName,
                         fileMimeType: idType,
